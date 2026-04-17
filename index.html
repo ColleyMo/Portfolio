@@ -21,6 +21,26 @@
       --tab-inactive: #9a9690;
       --nav-bg: #efefeb;
       --radius: 10px;
+      --theme-button-bg: rgba(255, 255, 255, 0.92);
+      --theme-button-shadow: 0 10px 24px rgba(26, 25, 23, 0.14);
+      --theme-button-icon: #1a1917;
+      --theme-button-hover: #f3f0ea;
+    }
+
+    body[data-theme="dark"] {
+      --bg: #111315;
+      --surface: #1a1d20;
+      --border: #31363b;
+      --text: #f3efe7;
+      --muted: #b5aea2;
+      --accent: #8bcf9f;
+      --tab-active: #f3efe7;
+      --tab-inactive: #8f938f;
+      --nav-bg: #171a1d;
+      --theme-button-bg: rgba(26, 29, 32, 0.94);
+      --theme-button-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+      --theme-button-icon: #f3efe7;
+      --theme-button-hover: #24292e;
     }
 
     body {
@@ -42,6 +62,42 @@
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .window-shell {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 14px;
+      right: -54px;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--theme-button-bg);
+      color: var(--theme-button-icon);
+      box-shadow: var(--theme-button-shadow);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: translateY(-1px);
+      background: var(--theme-button-hover);
+    }
+
+    .theme-toggle:active { transform: translateY(0); }
+
+    .theme-toggle svg {
+      width: 16px;
+      height: 16px;
     }
 
     /* macOS-style titlebar */
@@ -245,25 +301,47 @@
     /* hide/show pages */
     .page { display: none; }
     .page.active { display: block; }
+
+    @media (max-width: 680px) {
+      .theme-toggle {
+        top: -48px;
+        right: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="window">
-    <div class="titlebar">
-      <div class="dots">
-        <div class="dot dot-red"></div>
-        <div class="dot dot-yellow"></div>
-        <div class="dot dot-green"></div>
-      </div>
-      <nav>
-        <button class="active" onclick="showTab('home', this)">Home</button>
-        <button onclick="showTab('projects', this)">Projects</button>
-        <button onclick="showTab('contact', this)">Contact</button>
-      </nav>
-    </div>
+  <div class="window-shell">
+    <button
+      class="theme-toggle"
+      type="button"
+      aria-label="Switch to dark theme"
+      aria-pressed="false"
+      title="Toggle theme"
+      onclick="toggleTheme()"
+    >
+      <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"></circle>
+        <path d="M12 2.5v2.2M12 19.3v2.2M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2.5 12h2.2M19.3 12h2.2M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56"></path>
+      </svg>
+    </button>
 
-    <div class="content">
+    <div class="window">
+      <div class="titlebar">
+        <div class="dots">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+        </div>
+        <nav>
+          <button class="active" onclick="showTab('home', this)">Home</button>
+          <button onclick="showTab('projects', this)">Projects</button>
+          <button onclick="showTab('contact', this)">Contact</button>
+        </nav>
+      </div>
+
+      <div class="content">
 
       <!-- HOME -->
       <div id="home" class="page active">
@@ -340,16 +418,45 @@
         </div>
       </div>
 
+      </div>
     </div>
   </div>
 
   <script>
+    const themeIcon = document.getElementById('theme-icon');
+    const themeToggle = document.querySelector('.theme-toggle');
+
     function showTab(id, btn) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       btn.classList.add('active');
     }
+
+    function updateThemeButton(theme) {
+      const isDark = theme === 'dark';
+      themeToggle.setAttribute('aria-pressed', String(isDark));
+      themeToggle.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+      themeToggle.title = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+      themeIcon.innerHTML = isDark
+        ? '<path d="M20 15.5A8.5 8.5 0 1 1 8.5 4a6.7 6.7 0 0 0 11.5 11.5Z"></path>'
+        : '<circle cx="12" cy="12" r="4.5"></circle><path d="M12 2.5v2.2M12 19.3v2.2M4.93 4.93l1.56 1.56M17.51 17.51l1.56 1.56M2.5 12h2.2M19.3 12h2.2M4.93 19.07l1.56-1.56M17.51 6.49l1.56-1.56"></path>';
+    }
+
+    function setTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      updateThemeButton(theme);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.body.getAttribute('data-theme') || 'light';
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    setTheme(savedTheme || preferredTheme);
   </script>
 </body>
 </html>
