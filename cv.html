@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f7f5" />
+  <meta name="description" content="CV of Muhammed Colley — AI graduate and software developer." />
+  <title>CV | Muhammed Colley</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E👨🏽‍💻%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root { color-scheme:light; --ink:#202124; --muted:#73777e; --line:#e7e8e9; --blue:#1769e0; --paper:#f7f7f5; --sans:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Helvetica Neue',sans-serif }
+    * { box-sizing:border-box }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 var(--sans); -webkit-font-smoothing:antialiased }
+    a { color:inherit; text-decoration:none }
+    a:hover { color:var(--blue) }
+    .wrap { width:min(100% - 48px,850px); margin:0 auto }
+    header { height:76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line) }
+    .brand { font-size:15px; font-weight:650; letter-spacing:-.03em }
+    nav { display:flex; gap:24px; color:#676b72; font-size:13px }
+    main { padding:38px 0 64px }
+    h1 { margin:0 0 19px; font-size:clamp(42px,7vw,64px); line-height:1.05; letter-spacing:-.065em; font-weight:650 }
+    .cv-link { display:inline-flex; align-items:center; gap:9px; padding:11px 16px; border-radius:8px; background:var(--blue); color:#fff; font-size:14px; font-weight:600; transition:background .18s ease }
+    .cv-link:hover { background:#0f57bd; color:#fff }
+    .resume { margin-top:36px }
+    .timeline-section + .timeline-section { margin-top:30px }
+    .timeline-section h2 { margin:0 0 14px; font-size:21px; letter-spacing:-.035em }
+    .timeline { border-top:1px solid var(--line) }
+    .timeline-item { position:relative; display:grid; grid-template-columns:1fr auto; gap:4px 22px; padding:21px 0 21px 23px; border-bottom:1px solid var(--line) }
+    .timeline-item::before { content:""; position:absolute; left:0; top:28px; width:9px; height:9px; border:2px solid var(--blue); border-radius:50%; background:var(--paper); z-index:1 }
+    .timeline-item:not(:last-child)::after { content:""; position:absolute; left:5px; top:39px; bottom:-1px; width:1px; background:#cfd8e6 }
+    .timeline-item h3 { margin:0; font-size:16px; font-weight:620; letter-spacing:-.02em }
+    .timeline-item p { grid-column:1/-1; margin:3px 0 0; color:#6c7076; font-size:14px }
+    .date { color:var(--muted); font-size:13px; white-space:nowrap }
+    .back { display:inline-block; margin-top:30px; color:var(--blue); font-size:14px; font-weight:550 }
+    footer { padding:28px 0 42px; border-top:1px solid var(--line); color:#858990; font-size:12px }
+    @media(max-width:520px) { .wrap{width:min(100% - 34px,850px)} header{height:66px} nav{gap:14px;font-size:12px} main{padding:28px 0 48px} .timeline-item{grid-template-columns:1fr;gap:3px}.date{grid-row:2} }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <a class="brand" href="index.html">Muhammed Colley</a>
+    <nav aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="extracurriculars.html">Extracurriculars</a><a href="cv.html" aria-current="page">CV</a><a href="https://github.com/colleymohamed" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+  </header>
+  <main class="wrap">
+    <h1>CV</h1>
+    <a class="cv-link" href="Muhammedcolley2026.pdf" target="_blank" rel="noopener" aria-label="Open Muhammed Colley's CV PDF in a new tab">View full CV <span aria-hidden="true">↗</span></a>
+    <section class="resume" aria-label="Education and experience">
+      <section class="timeline-section" aria-labelledby="education-title">
+        <h2 id="education-title">Education</h2>
+        <div class="timeline">
+          <article class="timeline-item"><h3>MSc Artificial Intelligence</h3><span class="date">2024–2025</span><p>Northumbria University · Pass</p></article>
+          <article class="timeline-item"><h3>BSc Computing &amp; Smart Technologies</h3><span class="date">2020–2024</span><p>Sheffield Hallam University · 2:1</p></article>
+        </div>
+      </section>
+      <section class="timeline-section" aria-labelledby="experience-title">
+        <h2 id="experience-title">Experience</h2>
+        <div class="timeline">
+          <article class="timeline-item"><h3>Software Developer Intern · SHU Enterprise</h3><span class="date">2022–2023</span><p>Built a Django web application for an early-stage EdTech startup, including authentication, data models, and CRUD features with Python and SQL. Worked with founders to shape requirements and iterate from feedback.</p></article>
+        </div>
+      </section>
+    </section>
+    <a class="back" href="index.html">← Back to portfolio</a>
+  </main>
+  <footer class="wrap">© 2026 Muhammed Colley · 👨🏽‍💻</footer>
+</body>
+</html>
