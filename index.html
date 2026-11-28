@@ -18,8 +18,11 @@
     .wrap { width:min(100% - 48px, 850px); margin:0 auto }
     header { height:76px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid var(--line) }
     .brand { font-size:15px; font-weight:650; letter-spacing:-.03em }
+    .header-right { display:flex; align-items:center; gap:22px }
     nav { display:flex; gap:26px; color:#676b72; font-size:13px }
     nav a:hover { color:var(--ink) }
+    .cv-download { display:inline-flex; align-items:center; gap:7px; padding:8px 12px; border-radius:7px; background:#202124; color:#fff; font-size:12px; font-weight:550; white-space:nowrap }
+    .cv-download:hover { background:#3a3b3f; color:#fff }
     .hero { padding:36px 0 30px; border-bottom:1px solid var(--line) }
     .profile { display:grid; grid-template-columns:106px minmax(0,1fr); gap:20px; align-items:center }
     .profile-photo { width:106px; height:106px; border-radius:10px; object-fit:cover; object-position:center 27%; background:#e8e5de }
@@ -40,11 +43,13 @@
     h2 { font:600 30px/1.2 var(--sans); letter-spacing:-.045em; margin:0 }
     .section-note { color:var(--muted); font-size:13px }
     .about-copy { max-width:680px; margin:0; color:#62676e; font-size:15px; line-height:1.7 }
-    .project-intro { margin:-5px 0 18px; color:#72767d; font-size:14px }
-    .projects { display:grid; grid-template-columns:1fr 1fr; gap:14px }
+    .projects { display:grid; grid-template-columns:1fr; gap:14px }
     .project { background:var(--card); border:1px solid #ececed; border-radius:11px; padding:22px 22px 20px; min-height:207px; display:flex; flex-direction:column; transition:transform .2s, box-shadow .2s }
     .project:hover { transform:translateY(-3px); box-shadow:0 10px 26px #2021240a }
     .project-top { display:flex; justify-content:space-between; align-items:center; gap:10px }
+    .project-links,.repo-actions { display:flex; gap:8px; margin-top:16px }
+    .project-link,.repo-action { display:inline-flex; align-items:center; gap:5px; padding:6px 10px; border:1px solid var(--line); border-radius:6px; color:#5f6670; font-size:11px; font-weight:550 }
+    .project-link:hover,.repo-action:hover { border-color:#b9cbe1; background:#fff; color:var(--blue) }
     h3 { margin:0; font-size:17px; letter-spacing:-.03em; font-weight:620 }
     .arrow { color:#9ba0a7; font-size:17px }
     .project p { font-size:13px; line-height:1.65; color:#6b7077; margin:12px 0 19px }
@@ -52,12 +57,12 @@
     .tag { background:#f3f4f5; border-radius:4px; padding:3px 7px; font-size:10px; color:#72767c }
     .github { display:flex; justify-content:space-between; align-items:center; padding:22px 0; color:#666b72; font-size:14px }
     footer { padding:28px 0 42px; display:flex; justify-content:space-between; color:#858990; font-size:12px }
-    .repo-layout { display:grid; grid-template-columns:minmax(0, 2fr) minmax(220px, .92fr); gap:28px }
-    .repo-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px }
+    .repo-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px }
     .repo-card { min-height:154px; padding:20px 19px; background:var(--card); border:1px solid #e5e7e9; border-radius:12px; display:flex; flex-direction:column; transition:transform .2s,border-color .2s,box-shadow .2s }
     .repo-card:hover { transform:translateY(-2px); border-color:#c7d7eb; box-shadow:0 8px 22px #2021240a }
     .repo-card-head { display:flex; align-items:center; justify-content:space-between; gap:10px }
     .repo-card-name { font-size:16px; font-weight:620; letter-spacing:-.025em; overflow-wrap:anywhere }
+    .repo-card-name:hover { color:var(--blue) }
     .repo-stars { flex:none; color:#7e858d; font:12px/1 var(--sans); white-space:nowrap }
     .repo-stars b { color:#7e858d; font-weight:500; margin-left:4px }
     .repo-description { margin:8px 0 16px; color:#737a82; font-size:13px; line-height:1.5; display:-webkit-box; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
@@ -65,22 +70,15 @@
     .repo-language::before { content:""; display:inline-block; width:9px; height:9px; margin-right:8px; border-radius:50%; background:var(--lang-color,#777); vertical-align:0 }
     #github { padding-bottom:12px; border-bottom:0 }
     #top-repos { padding-top:12px }
-    .language-panel { align-self:start; padding:20px 20px 16px; background:var(--card); border:1px solid #e5e7e9; border-radius:12px }
-    .language-panel h3 { margin:0 0 18px; font:600 14px/1.2 var(--sans); letter-spacing:.06em; text-transform:uppercase; color:#707780 }
-    .language-item { margin:0 0 15px }
-    .language-line { display:flex; justify-content:space-between; gap:12px; font:12px/1.4 var(--sans); color:#5d646c }
-    .language-percent { color:#868d95 }
-    .language-track { height:6px; margin-top:7px; border-radius:99px; overflow:hidden; background:#eceef0 }
-    .language-fill { height:100%; border-radius:inherit; background:var(--lang-color,#777); width:0; transition:width .5s ease }
-    @media(max-width:700px) { .repo-layout{grid-template-columns:1fr}.language-panel{width:100%} }
-    @media(max-width:620px) { .wrap {width:min(100% - 32px,850px)} header{height:auto;min-height:62px;padding:10px 0;gap:10px;flex-wrap:wrap} nav{gap:12px;font-size:12px} .hero{padding:24px 0 22px}.profile{grid-template-columns:72px minmax(0,1fr);gap:12px}.profile-photo{width:72px;height:82px}.profile h1{font-size:clamp(24px,7.2vw,30px);line-height:1.08}.profile-role{font-size:14px}.hero-links{gap:6px;margin-top:10px;flex-wrap:wrap}.hero-link{width:40px;height:40px}.hero-link svg{width:18px;height:18px}.section{padding:22px 0}.projects{grid-template-columns:1fr}.project{min-height:0}.repo-cards{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column;gap:6px} }
+    @media(max-width:700px) { .repo-cards{grid-template-columns:repeat(2,minmax(0,1fr))} }
+    @media(max-width:620px) { .wrap {width:min(100% - 32px,850px)} header{height:auto;min-height:62px;padding:10px 0;gap:10px;flex-wrap:wrap} .header-right{gap:12px} nav{gap:12px;font-size:12px}.cv-download{padding:7px 9px;font-size:11px} .hero{padding:24px 0 22px}.profile{grid-template-columns:72px minmax(0,1fr);gap:12px}.profile-photo{width:72px;height:82px}.profile h1{font-size:clamp(24px,7.2vw,30px);line-height:1.08}.profile-role{font-size:14px}.hero-links{gap:6px;margin-top:10px;flex-wrap:wrap}.hero-link{width:40px;height:40px}.hero-link svg{width:18px;height:18px}.section{padding:22px 0}.project{min-height:0}.repo-cards{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column;gap:6px} }
     @media(max-width:390px) { .wrap{width:min(100% - 28px,850px)} nav{gap:9px;font-size:11px}.brand{font-size:14px} }
   </style>
 </head>
 <body>
   <header class="wrap">
     <a class="brand" href="#top">Muhammed Colley</a>
-    <nav aria-label="Main navigation"><a href="#projects">Projects</a><a href="cv.html">CV</a><a href="https://github.com/colleymohamed" target="_blank" rel="noreferrer">GitHub ↗</a></nav>
+    <div class="header-right"><nav aria-label="Main navigation"><a href="#projects">Projects</a><a href="cv.html">CV</a><a href="https://github.com/colleymohamed" target="_blank" rel="noreferrer">GitHub ↗</a></nav><a class="cv-download" href="Muhammedcolley2026.pdf" download>Download CV ↓</a></div>
   </header>
   <main id="top" class="wrap">
     <section class="hero" aria-label="Profile">
@@ -88,7 +86,7 @@
         <img class="profile-photo" src="assets/muhammed-colley.png" alt="Muhammed Colley in graduation attire" />
         <div>
           <h1>Muhammed Colley</h1>
-          <p class="profile-role">AI Graduate · Software Developer</p>
+          <p class="profile-role">AI Graduate</p>
           <div class="hero-links" aria-label="Contact links">
             <a class="hero-link" href="mailto:colleymohamed@icloud.com" aria-label="Email Muhammed" title="Email"><svg class="stroke-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></a>
             <a class="hero-link" href="tel:+447386163333" aria-label="Call 07386163333" title="Phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.8 9.3 2c.7-.2 1.4.2 1.6.9l1.1 3.5c.2.6 0 1.2-.5 1.6l-1.8 1.4a14.6 14.6 0 0 0 4.9 4.9l1.4-1.8c.4-.5 1-.7 1.6-.5l3.5 1.1c.7.2 1.1.9.9 1.6l-.8 2.7c-.2.7-.9 1.2-1.7 1.2C10.8 18.2 5.8 13.2 5.4 4.5c0-.8.5-1.5 1.2-1.7Z"/></svg></a>
@@ -104,9 +102,8 @@
     </section>
     <section id="projects" class="section">
       <div class="section-head"><h2>Featured projects</h2></div>
-      <p class="project-intro">Selected work from my GitHub profile.</p>
       <div class="projects">
-        <a class="project" href="https://github.com/five-petals/ePastPapers" target="_blank" rel="noreferrer"><div class="project-top"><h3>ePastPapers</h3><span class="arrow">↗</span></div><p>An open library of Gambian national exam papers, making study resources easier to find and use.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Education</span><span class="tag">Open source</span></div></a>
+        <article class="project" data-repo="five-petals/ePastPapers"><div class="project-top"><h3>ePastPapers</h3><span class="arrow">↗</span></div><p>An open library of Gambian national exam papers, making study resources easier to find and use.</p><div class="tags"><span class="tag">JavaScript</span><span class="tag">Education</span><span class="tag">Open source</span></div><div class="project-links"><a class="project-link" href="https://github.com/five-petals/ePastPapers" target="_blank" rel="noreferrer">GitHub ↗</a><a class="project-link" data-demo hidden target="_blank" rel="noreferrer">Live demo ↗</a></div></article>
       </div>
     </section>
     <section id="github" class="section">
@@ -117,14 +114,11 @@
     </section>
     <section id="top-repos" class="section">
       <div class="section-head"><h2>Top repositories</h2><a class="section-note" href="https://github.com/colleymohamed" target="_blank" rel="noreferrer">View all on GitHub ↗</a></div>
-      <div class="repo-layout">
-        <div class="repo-cards" id="repo-cards">
-          <a class="repo-card" href="https://github.com/five-petals/ePastPapers" target="_blank" rel="noreferrer" data-repo="five-petals/ePastPapers"><span class="repo-card-head"><span class="repo-card-name">ePastPapers</span><span class="repo-stars">★ <b data-stars>—</b></span></span><p class="repo-description">An open library of Gambian national exam papers.</p><span class="repo-language" style="--lang-color:#f1e05a">JavaScript</span></a>
-          <a class="repo-card" href="https://github.com/colleymohamed/Youtube-sentiment-analysis" target="_blank" rel="noreferrer" data-repo="colleymohamed/Youtube-sentiment-analysis"><span class="repo-card-head"><span class="repo-card-name">Youtube-sentiment-analysis</span><span class="repo-stars">★ <b data-stars>—</b></span></span><p class="repo-description">Streamlit app for analyzing YouTube comments with VADER, AFINN, and TextBlob, with interactive charts and CSV export.</p><span class="repo-language" style="--lang-color:#3572A5">Python</span></a>
-          <a class="repo-card" href="https://github.com/colleymohamed/msc-ai-dissertation" target="_blank" rel="noreferrer" data-repo="colleymohamed/msc-ai-dissertation"><span class="repo-card-head"><span class="repo-card-name">msc-ai-dissertation</span><span class="repo-stars">★ <b data-stars>—</b></span></span><p class="repo-description">Semi-supervised defect detection in thermographic images of composite materials, using K-Means, pseudo-labelling, YOLOv8 and ResNet.</p><span class="repo-language" style="--lang-color:#da5b0b">Jupyter Notebook</span></a>
-          <a class="repo-card" href="https://github.com/colleymohamed/sms-spam-classifier" target="_blank" rel="noreferrer" data-repo="colleymohamed/sms-spam-classifier"><span class="repo-card-head"><span class="repo-card-name">sms-spam-classifier</span><span class="repo-stars">★ <b data-stars>—</b></span></span><p class="repo-description">A machine learning app that classifies text messages as spam or ham, with a live web demo.</p><span class="repo-language" style="--lang-color:#da5b0b">Jupyter Notebook</span></a>
-        </div>
-        <aside class="language-panel" aria-label="GitHub language mix"><h3>Language mix</h3><div id="language-mix"><div class="language-line"><span>Fetching from GitHub…</span></div></div></aside>
+      <div class="repo-cards" id="repo-cards">
+          <article class="repo-card" data-repo="five-petals/ePastPapers"><div class="repo-card-head"><a class="repo-card-name" href="https://github.com/five-petals/ePastPapers" target="_blank" rel="noreferrer">ePastPapers ↗</a><span class="repo-stars">★ <b data-stars>—</b></span></div><p class="repo-description">An open library of Gambian national exam papers.</p><span class="repo-language" style="--lang-color:#f1e05a">JavaScript</span><div class="repo-actions"><a class="repo-action" href="https://github.com/five-petals/ePastPapers" target="_blank" rel="noreferrer">GitHub ↗</a><a class="repo-action" data-demo hidden target="_blank" rel="noreferrer">Live demo ↗</a></div></article>
+          <article class="repo-card" data-repo="colleymohamed/Youtube-sentiment-analysis"><div class="repo-card-head"><a class="repo-card-name" href="https://github.com/colleymohamed/Youtube-sentiment-analysis" target="_blank" rel="noreferrer">Youtube-sentiment-analysis ↗</a><span class="repo-stars">★ <b data-stars>—</b></span></div><p class="repo-description">Streamlit app for analyzing YouTube comments with VADER, AFINN, and TextBlob, with interactive charts and CSV export.</p><span class="repo-language" style="--lang-color:#3572A5">Python</span><div class="repo-actions"><a class="repo-action" href="https://github.com/colleymohamed/Youtube-sentiment-analysis" target="_blank" rel="noreferrer">GitHub ↗</a><a class="repo-action" data-demo hidden target="_blank" rel="noreferrer">Live demo ↗</a></div></article>
+          <article class="repo-card" data-repo="colleymohamed/msc-ai-dissertation"><div class="repo-card-head"><a class="repo-card-name" href="https://github.com/colleymohamed/msc-ai-dissertation" target="_blank" rel="noreferrer">msc-ai-dissertation ↗</a><span class="repo-stars">★ <b data-stars>—</b></span></div><p class="repo-description">Semi-supervised defect detection in thermographic images of composite materials, using K-Means, pseudo-labelling, YOLOv8 and ResNet.</p><span class="repo-language" style="--lang-color:#da5b0b">Jupyter Notebook</span><div class="repo-actions"><a class="repo-action" href="https://github.com/colleymohamed/msc-ai-dissertation" target="_blank" rel="noreferrer">GitHub ↗</a><a class="repo-action" data-demo hidden target="_blank" rel="noreferrer">Live demo ↗</a></div></article>
+          <article class="repo-card" data-repo="colleymohamed/sms-spam-classifier"><div class="repo-card-head"><a class="repo-card-name" href="https://github.com/colleymohamed/sms-spam-classifier" target="_blank" rel="noreferrer">sms-spam-classifier ↗</a><span class="repo-stars">★ <b data-stars>—</b></span></div><p class="repo-description">A machine learning app that classifies text messages as spam or ham, with a live web demo.</p><span class="repo-language" style="--lang-color:#da5b0b">Jupyter Notebook</span><div class="repo-actions"><a class="repo-action" href="https://github.com/colleymohamed/sms-spam-classifier" target="_blank" rel="noreferrer">GitHub ↗</a><a class="repo-action" data-demo hidden target="_blank" rel="noreferrer">Live demo ↗</a></div></article>
       </div>
     </section>
   </main>
@@ -132,44 +126,27 @@
 
   <script>
     const repoCards = [...document.querySelectorAll("[data-repo]")];
-    const languageColors = { JavaScript: "#f1e05a", TypeScript: "#3178c6", Python: "#3572A5", "Jupyter Notebook": "#da5b0b", HTML: "#e34c26", CSS: "#563d7c", Java: "#b07219", C: "#555555", "C++": "#f34b7d" };
     async function loadGitHubStats() {
-      const results = await Promise.all(repoCards.map(async card => {
-        const response = await fetch(`https://api.github.com/repos/${card.dataset.repo}`);
-        if (!response.ok) throw new Error("GitHub repository data unavailable");
-        const repo = await response.json();
-        const stars = card.querySelector("[data-stars]");
-        if (stars) stars.textContent = repo.stargazers_count;
-        return { repo, languages: await fetch(repo.languages_url).then(r => r.ok ? r.json() : {}) };
+      const repos = [...new Set(repoCards.map(card => card.dataset.repo))];
+      await Promise.all(repos.map(async name => {
+        try {
+          const response = await fetch(`https://api.github.com/repos/${name}`);
+          if (!response.ok) return;
+          const repo = await response.json();
+          document.querySelectorAll(`[data-repo="${name}"]`).forEach(card => {
+            const stars = card.querySelector("[data-stars]");
+            if (stars) stars.textContent = repo.stargazers_count;
+            const demo = card.querySelector("[data-demo]");
+            const homepage = repo.homepage?.trim();
+            if (demo && homepage) {
+              demo.href = /^https?:\/\//i.test(homepage) ? homepage : `https://${homepage}`;
+              demo.hidden = false;
+            }
+          });
+        } catch { /* Keep repository links available if GitHub is offline. */ }
       }));
-      const totals = {};
-      for (const result of results) for (const [language, bytes] of Object.entries(result.languages)) totals[language] = (totals[language] || 0) + bytes;
-      const ranked = Object.entries(totals).sort((a,b) => b[1] - a[1]);
-      const totalBytes = ranked.reduce((sum, [,bytes]) => sum + bytes, 0);
-      const panel = document.getElementById("language-mix");
-      panel.replaceChildren();
-      for (const [language, bytes] of ranked.slice(0, 6)) {
-        const percent = Math.round(bytes / totalBytes * 100);
-        const row = document.createElement("div"); row.className = "language-item";
-        const line = document.createElement("div"); line.className = "language-line";
-        const name = document.createElement("span"); name.textContent = language;
-        const value = document.createElement("span"); value.className = "language-percent"; value.textContent = `${percent}%`;
-        line.append(name, value);
-        const track = document.createElement("div"); track.className = "language-track";
-        const fill = document.createElement("div"); fill.className = "language-fill"; fill.style.width = `${percent}%`; fill.style.setProperty("--lang-color", languageColors[language] || "#6f7c8a");
-        track.append(fill); row.append(line, track); panel.append(row);
-      }
-      for (const result of results) {
-        const language = result.repo.language;
-        const label = repoCards.find(card => card.dataset.repo === result.repo.full_name)?.querySelector(".repo-language");
-        if (label && language) { label.textContent = language; label.style.setProperty("--lang-color", languageColors[language] || "#6f7c8a"); }
-      }
     }
-    loadGitHubStats().catch(() => {
-      const panel = document.getElementById("language-mix");
-      if (panel) panel.innerHTML = '<div class="language-line"><span>Open GitHub to see current stats</span></div>';
-      document.querySelectorAll("[data-stars]").forEach(star => star.textContent = "—");
-    });
+    loadGitHubStats();
   </script>
 
 
